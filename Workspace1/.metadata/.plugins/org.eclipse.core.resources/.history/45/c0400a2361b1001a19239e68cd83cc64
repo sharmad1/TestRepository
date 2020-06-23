@@ -1,0 +1,10 @@
+package parameterization;
+
+public class ParallelTestExecution extends BaseClass {
+	
+	@Test
+	public void getBrowserTitle(){
+		
+	}
+	
+}

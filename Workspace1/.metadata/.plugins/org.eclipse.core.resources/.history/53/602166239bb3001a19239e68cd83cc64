@@ -1,0 +1,60 @@
+package grid;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.ie.InternetExplorerOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+public class GridTestCase {
+
+	public static DesiredCapabilities cap;
+	public static RemoteWebDriver rdriver;
+
+	@Test(dataProvider="getData")
+	public void readData(String browser) throws MalformedURLException {
+
+		if (browser.equals("chrome")) {
+			cap = DesiredCapabilities.chrome();
+			cap.setBrowserName("chrome");
+			cap.setPlatform(Platform.ANY);
+			ChromeOptions options = new ChromeOptions();
+			options.merge(cap);
+
+		} else if (browser.equals("iexplore")) {
+			cap = DesiredCapabilities.internetExplorer();
+			cap.setBrowserName("iexplore");
+			cap.setPlatform(Platform.WINDOWS);
+			InternetExplorerOptions options = new InternetExplorerOptions();
+			options.merge(cap);
+
+		} else if (browser.equals("firefox")) {
+			cap = DesiredCapabilities.firefox();
+			cap.setBrowserName("firefox");
+			cap.setPlatform(Platform.ANY);
+			FirefoxOptions options = new FirefoxOptions();
+			options.merge(cap);
+		}
+	rdriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cap);
+	}
+	
+	@DataProvider
+	public Object[][] getData() {
+		Object data[][] = new Object[2][2];
+		
+		data[0][0] = "";
+		data[0][1] = "";
+		
+		data[1][0] = "";
+		data[1][1] = "";
+				
+		
+		return data;
+	}
+}

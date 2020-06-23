@@ -1,0 +1,40 @@
+package parameterization;
+
+import java.util.Hashtable;
+
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import utilities.ExcelReader;
+
+public class TestNGParameterizationHash {
+	public static ExcelReader excel = null;
+
+	@Test(dataProvider = "getData")
+	public void doLogin(Hashtable<String,String> data) {
+		System.out.println(data.get("UserName"));
+	}
+
+	@DataProvider
+	public Object[][] getData() {
+		
+		if (excel == null) {
+			excel = new ExcelReader(".//src//test//resources//Excel//TestNG.xlsx");
+		}
+		String sheetName = "Test1";
+		int rowNum = excel.getRowCount(sheetName);
+		int colNum = excel.getColumnCount(sheetName);
+		Object[][] data = new Object[rowNum][colNum];
+		Hashtable<String, String> table = null;
+		for (int row = 2; row <= rowNum; row++) {
+			table = new Hashtable<String, String>();
+			for (int col = 0; col < colNum; col++) {
+				table.put(excel.getCellData(sheetName, col, 1), excel.getCellData(sheetName, col, row));
+				data[row-2][col] = table;
+			}
+		}
+		return data;
+
+	}
+
+}

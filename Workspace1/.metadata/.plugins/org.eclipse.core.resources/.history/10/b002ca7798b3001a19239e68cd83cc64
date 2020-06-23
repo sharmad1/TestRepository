@@ -1,0 +1,22 @@
+package grid;
+
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+public class GridTestCase(){
+
+	public DesiredCapabilities dc;
+	public RemoteWebDriver rdriver;
+
+	public void readData(String browser) {
+	
+	if(browser.equals("chrome")) {
+		
+	}else if(browser.equals("iexplorer")){ 
+		
+		
+	}else if(browser.equals("firefox")) {
+		
+	}
+	}
+}

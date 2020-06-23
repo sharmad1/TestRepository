@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+<listeners>
+	<listener class-name="listeners.Listeners"></listener>
+</listeners>
+  <test  name="Test">
+  <parameter name="browser" value="chrome"></parameter>
+  	<classes>
+  		<class name="parameterization.ParallelTestExecution"></class>
+  	</classes>
+   </test> <!-- Test -->	
+   
+   <test  name="Test2">
+  	<classes>
+  		<class name="parameterization.TestNGParameterization"></class>
+  	</classes>
+   </test> <!-- Test -->	
+  
+</suite> <!-- Suite -->
